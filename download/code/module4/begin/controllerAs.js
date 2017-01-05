@@ -2,26 +2,28 @@
 
   var controllerAs = function () {
 
-    var template = '<button ng-click="addItem()">Add Item</button><ul>' +
-                 '<li ng-repeat="item in items">{{ ::item.name }}</li></ul>',
+    var template = '<button ng-click="vmc.addItem()">Add Item</button><ul>' +
+                 '<li ng-repeat="item in vmc.items">{{ ::item.name }}</li></ul>',
 
-        controller = ['$scope', function($scope) {
+        controller = function() {
+          var vmc = this
+
 
             init();
 
             function init() {
-               $scope.items = angular.copy($scope.datasource);
+               vmc.items = angular.copy(vmc.datasource);
             }
 
-            $scope.addItem = function() {
+            vmc.addItem = function() {
                 var name = 'New Directive Controller Item';
-                $scope.add()(name);
-                $scope.items.push({
+                vmc.add()(name);
+                vmc.items.push({
                     name: name
                 });
             }
 
-        }];
+        };
 
       return {
           restrict: 'EA', //Default in 1.3+
@@ -30,6 +32,8 @@
               add: '&',
           },
           controller: controller,
+          controllerAs:'vmc',
+          bindToController:true,
           template: template
       };
   };

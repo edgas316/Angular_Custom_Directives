@@ -2,15 +2,15 @@
      <table>
      <thead>
          <tr>
-             <th ng-repeat="col in vm.columns"
-                 ng-click="vm.sort(col)">{{col}}</th>
+             <th ng-repeat="col in vmc.columns"
+                 ng-click="vmc.sort(col)">{{col}}</th>
          </tr>
      </thead>
      <tbody>
-         <tr ng-repeat="row in vm.datasource | orderBy:vm.orderby:vm.reverse">
-         <td ng-repeat="value in vm.getRowValues(row)">{{value}}</td>
+         <tr ng-repeat="row in vmc.datasource | orderBy:vmc.orderby:vmc.reverse">
+         <td ng-repeat="value in vmc.getRowValues(row)">{{value}}</td>
          </tr>
      </tbody>
     </table>
-    <br /><div class="rowCount">{{vm.datasource.length}} rows</div>
+    <br /><div class="rowCount">{{vmc.datasource.length}} rows</div>
 </div>
